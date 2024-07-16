@@ -1,0 +1,114 @@
+package Conta;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import Cliente.dadosCliente;
+
+public abstract class conta implements iConta{
+	Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+	
+	private static final int AGENCIA_PADRAO = 0001;
+	private static int SEQUENCIAL = 1;
+	
+	protected int agencia, numero;
+	protected double saldo;
+	protected dadosCliente cliente;
+	
+	public conta(dadosCliente cliente) {
+		this.agencia = conta.AGENCIA_PADRAO;
+		this.numero = SEQUENCIAL++;
+		this.cliente = cliente;
+	}
+	
+	@Override
+	public void sacar(double valor) {
+		if (valor > 0 && valor <= saldo) {
+            sacar(valor);
+        } else {
+            System.out.println("Saldo insuficiente ou valor inválido.");
+        }
+	}
+
+	@Override
+	public void depositar(double valor) {
+		if (valor > 0) {
+			depositar(valor);
+        } else {
+            System.out.println("Valor inválido para depósito.");
+        }
+	}
+
+	@Override
+	public void tranferir(double valor, conta contaDestino) {
+		if (valor > 0 && valor <= saldo) {
+			this.sacar(valor);
+			contaDestino.depositar(valor);
+        } else {
+            System.out.println("Saldo insuficiente ou valor inválido.");
+        }
+		
+	}
+	
+	protected void imprimirInfosComuns() {
+		System.out.println(String.format("Titular: %s", this.cliente.getNome()));
+		System.out.println(String.format("Agencia: %d", this.agencia));
+		System.out.println(String.format("Conta: %d", this.numero));
+		System.out.println(String.format("Saldo: %.2f", this.saldo));
+	}
+	public void operacaoDesejada(int opcao) {
+		switch(opcao) {
+		case 1:
+			System.out.println("Digite qual o valor deseja sacar: ");
+			double valor = sc.nextDouble();
+			sacar(valor - saldo);
+			break;
+		case 2:
+			System.out.println("Digite qual o valor deseja depositar: ");
+			valor = sc.nextDouble();
+			depositar(valor + saldo);
+			break;
+		case 3:
+			System.out.println("Digite qual o valor deseja transferir: ");
+			valor = sc.nextDouble();
+			break;
+			
+		default:
+			System.out.println("Opção indisponivel ");
+			break;
+			
+		}
+		
+	}
+	public void escolherContaDesejada(int tipoConta) {
+		System.out.println("Escolha a conta que deseja acessar: ");
+		tipoConta = sc.nextInt();
+		if(tipoConta == 1) {
+			conta cc = new contaCorrente(cliente);
+			System.out.println("Digite a operação que deseja fazer: ");
+			cc.operacaoDesejada(sc.nextInt());
+		}
+		else if (tipoConta == 2) {
+			conta cp = new contaPoupanca(cliente);
+            System.out.println("Digite a operação que deseja fazer: ");
+            cp.operacaoDesejada(sc.nextInt());
+        } else {
+            System.out.println("Opção inválida.");
+            return;
+        }
+		sc.close();
+	}
+	
+	public int getAgencia() {
+		return agencia;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public double getSaldo() {
+		return saldo;
+	}
+	
+}

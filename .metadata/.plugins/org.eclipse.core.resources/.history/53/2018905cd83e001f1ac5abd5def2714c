@@ -1,0 +1,37 @@
+package Cliente;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class cadastroCliente {
+	List<dadosCliente> clientes;
+
+	public cadastroCliente() {
+		this.clientes = new ArrayList<>();
+	}
+	
+	public void novoCliente(dadosCliente cliente) {
+		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+		System.out.println("Digite o seu nome: ");
+		dadosCliente.setNome(sc.next());
+		System.out.println("Digite a sua Data de nascimento: ");
+		dadosCliente.setDataNascimento(sc.next());
+		System.out.println("Digite o seu CPF: ");
+		dadosCliente.setCpf(sc.next());
+	}
+	public void adicionarCliente(dadosCliente cliente) {
+		clientes.add(cliente);
+	}
+	 public dadosCliente buscarClientePorCpf(int cpf) {
+	        for (dadosCliente cliente : clientes) {
+	            if (clientes.get(cpf).equals(cpf)) {
+	            	return cliente;
+	            }
+	        }
+			return null;    
+	 }
+}
+	        
+	        

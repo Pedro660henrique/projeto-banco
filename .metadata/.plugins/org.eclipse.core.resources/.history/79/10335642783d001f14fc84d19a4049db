@@ -1,0 +1,54 @@
+package Aplicação;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import Cliente.cadastroCliente;
+import Cliente.dadosCliente;
+import Conta.conta;
+import Conta.contaCorrente;
+import Conta.contaPoupanca;
+
+public class Programa {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+		cadastroCliente cadastro = new cadastroCliente();
+		dadosCliente novoCliente = new dadosCliente();
+		System.out.println("Digite o seu nome: ");
+		novoCliente.setNome(sc.next());
+		System.out.println("Digite a sua Data de nascimento: ");
+		novoCliente.setDataNascimento(sc.next());
+		System.out.println("Digite o seu CPF: ");
+		novoCliente.setCpf(sc.next());
+		conta cc = new contaCorrente(novoCliente);
+		conta cp = new contaPoupanca(novoCliente);
+		
+		System.out.println("Escolha a conta que deseja acessar: ");
+		int tipoConta = sc.nextInt();
+		if(tipoConta == 1) {
+			System.out.println("Digite a operação que deseja fazer: ");
+			cc.operacaoDesejada(sc.nextInt());
+		}
+		else if (tipoConta == 2) {
+            System.out.println("Digite a operação que deseja fazer: ");
+            cp.operacaoDesejada(sc.nextInt());
+        } else {
+            System.out.println("Opção inválida.");
+            return;
+        }
+		
+		System.out.println();
+		cc.depositar(100);
+		cc.tranferir(50, cp);
+		cc.imprimirExtrato();
+		cp.imprimirExtrato();
+		
+		
+		
+		
+		
+		sc.close();
+	}
+}
+

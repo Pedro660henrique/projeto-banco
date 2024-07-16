@@ -1,0 +1,7 @@
+package Cliente;
+
+public class dadosCliente {
+	private String nome, dataNascimento;
+	private int cpf;
+	
+}

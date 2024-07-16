@@ -1,0 +1,24 @@
+package Cliente;
+
+public class dadosCliente {
+	protected String nome, cpf, dataNascimento;
+	
+	public String getNome() {
+		return nome;
+	}
+	public static void setNome(String nome) {
+		nome = nome;
+	}
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
+	public static void setDataNascimento(String dataNascimento) {
+		dataNascimento = dataNascimento;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public static void setCpf(String cpf) {
+		cpf = cpf;
+	}
+}

@@ -1,0 +1,49 @@
+package Aplicação;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import Cliente.cadastroCliente;
+import Cliente.dadosCliente;
+import Conta.conta;
+import Conta.contaCorrente;
+import Conta.contaPoupanca;
+import Conta.iConta;
+
+public class Programa {
+
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+		cadastroCliente cadastro = new cadastroCliente();
+		dadosCliente novoCliente = new dadosCliente();
+		
+		
+			
+		cadastro.novoCliente(novoCliente);
+		cadastro.adicionarCliente(novoCliente);
+		
+        
+		conta cc = new contaCorrente(novoCliente);
+		conta cp = new contaPoupanca(novoCliente);
+		
+		cc.contaDesejada();
+		cp.contaDesejada();
+		
+		System.out.println();
+		cc.depositar(100);
+		cc.tranferir(50, cp);
+		cc.imprimirExtrato();
+		cp.imprimirExtrato();
+		
+		System.out.println("\nDigite o CPF para buscar o cliente:");
+        String cpfBusca = sc.nextLine();
+        cadastro.buscarEExibirClientePorCpf(cpfBusca);
+		
+		
+		
+		
+		
+		sc.close();
+	}
+}
+

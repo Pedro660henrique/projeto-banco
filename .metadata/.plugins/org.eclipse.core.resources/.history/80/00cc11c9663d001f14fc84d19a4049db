@@ -1,0 +1,40 @@
+package Aplicação;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import Cliente.dadosCliente;
+import Conta.conta;
+import Conta.contaCorrente;
+import Conta.contaPoupanca;
+
+public class Programa {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+		
+		System.out.println("Olá seja bem vindo ao nosso banco!");
+		System.out.println();
+		System.out.println("Operações Disponiveis: ");
+		System.out.println("1 - Para Saque");
+		System.out.println("2 - Para Deposito");
+		System.out.println("3 - Transferenrencia");
+		System.out.println();
+		System.out.println("Digite a opção desejada: ");
+		
+		
+		dadosCliente pedro = new dadosCliente();
+		pedro.setNome("Pedro");
+		
+		conta cc = new contaCorrente(pedro);
+		conta cp = new contaPoupanca(pedro);
+		
+		System.out.println();
+		cc.depositar(100);
+		cc.tranferir(50, cp);
+		
+		cc.imprimirExtrato();
+		cp.imprimirExtrato();
+	}
+
+}

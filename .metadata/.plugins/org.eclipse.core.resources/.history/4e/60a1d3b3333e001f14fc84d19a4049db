@@ -1,0 +1,11 @@
+package Exceptions;
+
+import java.util.InputMismatchException;
+
+public class exeptions {
+	try {
+		
+		} catch(InputMismatchException e) {
+			System.out.println("Erro: Entrada inválida. Por favor, digite um nome válido.");
+		}
+}

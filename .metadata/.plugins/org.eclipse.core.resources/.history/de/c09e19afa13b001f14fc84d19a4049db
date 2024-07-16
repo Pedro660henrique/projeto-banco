@@ -1,0 +1,17 @@
+package Aplicação;
+
+import Conta.conta;
+import Conta.contaCorrente;
+import Conta.contaPoupanca;
+
+public class Banco {
+
+	public static void main(String[] args) {
+		conta cc = new contaCorrente();
+		conta cp = new contaPoupanca();
+		
+		cc.imprimirExtrato();
+		cp.imprimirExtrato();
+	}
+
+}

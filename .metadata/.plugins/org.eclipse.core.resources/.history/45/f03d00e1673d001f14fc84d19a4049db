@@ -1,0 +1,31 @@
+package Aplicação;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import Cliente.dadosCliente;
+import Conta.conta;
+import Conta.contaCorrente;
+import Conta.contaPoupanca;
+
+public class Programa {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+		
+		dadosCliente pedro = new dadosCliente();
+		pedro.setNome("Pedro");
+		
+		conta cc = new contaCorrente(pedro);
+		conta cp = new contaPoupanca(pedro);
+		
+		cc.operacaoDesejada(1);
+		System.out.println();
+		cc.depositar(100);
+		cc.tranferir(50, cp);
+		
+		cc.imprimirExtrato();
+		cp.imprimirExtrato();
+	}
+
+}

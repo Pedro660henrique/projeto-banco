@@ -1,0 +1,22 @@
+package Exceptions;
+
+import java.util.InputMismatchException;
+import java.util.Locale;
+import java.util.Scanner;
+
+import Cliente.dadosCliente;
+
+public class exeptions() {
+	try {
+		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+		System.out.println("Digite o seu nome: ");
+		dadosCliente.setNome(sc.next());
+		sc.close();
+		
+	} 
+	catch (InputMismatchException e) {
+		System.out.println("Erro: Entrada inválida. Por favor, digite um nome válido.");
+	}
+}
+
+
